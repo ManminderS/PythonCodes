@@ -1,4 +1,4 @@
-#1. Create a greeting for your program.
+#1. Create a greeting for your program. #Greetings
 print("Welcome to band name  generator")
 #2. Ask the user for the city that they grew up in.
 city = input("What city you grew up in?\n")
