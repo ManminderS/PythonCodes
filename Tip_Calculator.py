@@ -17,4 +17,5 @@ total_cost = total_bill + (total_bill * tip / 100)
 print(total_cost) 
 cost_per_person = total_cost / people
 final_amount_per_person = round(cost_per_person, 2)
+final_amount_per_person = "{:.2f}".format(cost_per_person)
 print(f"Each person should pay: ${final_amount_per_person}")
