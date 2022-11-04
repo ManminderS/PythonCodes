@@ -12,3 +12,13 @@ days = 90 * 365 - int(age) * 365
 Weeks = 90 * 52 - int(age) * 52
 months = 90 * 12 - int(age) * 12
 print(f"You have {days} days, {Weeks} weeks, {months} months left")
+
+
+
+# or 
+
+yrs_remaining = 90 - int(age)
+days_remaining = yrs_remaining * 365
+weeks_remaining = yrs_remaining * 52
+month_remaining = yrs_remaining * 12
+print(f"You have {days_remaining} days, {weeks_remaining} weeks, and {month_remaining} months left.")
