@@ -11,6 +11,9 @@ def turn_right():
     turn_left()
     turn_left()
     
+while front_is_clear():  #this while loop is to move the reeborg to move to the nearest wall so that he doesnt get stuck in infinite loop where he has right side clear in all 4 direction(This happens when he is in the middle of the maze)
+    move()
+turn_left()
    
         
 while not at_goal():
