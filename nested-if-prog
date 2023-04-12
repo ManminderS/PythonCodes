@@ -1,0 +1,9 @@
+num = int(input("Enter a value: "))
+if num >= 0:
+  if num > 0:
+    print("Positive number")
+  else:
+    print("Zero")
+else:
+  print("Negative Number")
+
