@@ -17,12 +17,17 @@ length_of_randomword = len(random_word)
 for i in range(length_of_randomword):
   display.insert(0, "_")
 
-print(display)
+game_end = False
 
-for position in range(length_of_randomword):
-  letter = random_word[position] #this will allot letter the value of each char one by one as it loops through randomword
-  if letter == guess:
-    display[position] = letter
-
-print(display)
+while not game_end:
+  guess = input("Please enter your guess: ").lower()
+  for position in range(length_of_randomword): #this starts the loop, word length times
+    letter = random_word[position] #this 
+    if guess == letter:
+      display[position] = letter
+      
+  print(display)
   
+  if "_" not in display:
+    game_end = True
+    print("You Win")
