@@ -95,3 +95,4 @@ while not end_of_game:
     end_of_game = True
     print("You Win")
   print(stages[lives])
+  print(f"you have {lives} lives left")
