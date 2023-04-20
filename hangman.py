@@ -1,33 +1,97 @@
-#Step 1 
 import random
-#print welcome message
-print("Welcome to word guesser Game")
+
+#Declare Variables
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+end_of_game = False
+game = ["johnwick", "gta5", "witcher", "fifa23"]
+random_game = random.choice(game)
+word_length = len(random_game)
+lives = 6
+
+
+
+print(f"The solution is {random_game}.")
+print()
+
+
+#create a list "display" and add _ for every word selected randomly
 display = []
-print()
-word_list = ["aardvark", "baboon", "camel", "ironman", "blackpanther", "spiderman"]
+for i in range(word_length):
+  display += "_"
+print(display)
 
-#randomise the word and print the word
-random_word = random.choice(word_list)
-print(f"random word is {random_word} and has {len(random_word)} characters")
-print()
-#take input from the player, convert it to lowercase and then split it into
-guess = input("Please enter your guess: ").lower()
-length_of_randomword = len(random_word)
 
-for i in range(length_of_randomword):
-  display.insert(0, "_")
-
-game_end = False
-
-while not game_end:
-  guess = input("Please enter your guess: ").lower()
-  for position in range(length_of_randomword): #this starts the loop, word length times
-    letter = random_word[position] #this 
+#Ask Player to Guess and enter the correct guessed alphabet to exact position as in the word
+while not end_of_game:
+  guess = input("Guess the alphabet: ").lower()
+  for position in range(word_length):
+    letter = random_game[position]
     if guess == letter:
-      display[position] = letter
-      
-  print(display)
-  
+      display[position] = guess
+
+  if guess not in random_game:
+    lives -= 1
+    if lives == 0:
+      print("You Lose")
+    
+  print(f"{''.join(display)}")
+
   if "_" not in display:
-    game_end = True
+    end_of_game = True
     print("You Win")
+  print(stages[lives])
