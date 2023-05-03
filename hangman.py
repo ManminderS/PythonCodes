@@ -1,98 +1,54 @@
 import random
-
-#Declare Variables
-stages = ['''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-''']
+from hangman_art import logo
+print(logo)
 end_of_game = False
-game = ["johnwick", "gta5", "witcher", "fifa23"]
-random_game = random.choice(game)
-word_length = len(random_game)
+from hangman_words import word_list
+chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
+
+#TODO-1: - Create a variable called 'lives' to keep track of the number of lives left. 
+#Set 'lives' to equal 6.
 lives = 6
 
+#Testing code
+print(f'Pssst, the solution is {chosen_word}.')
 
-
-print(f"The solution is {random_game}.")
-print()
-
-
-#create a list "display" and add _ for every word selected randomly
+#Create blanks
 display = []
-for i in range(word_length):
-  display += "_"
-print(display)
+for _ in range(word_length):
+    display += "_"
 
-
-#Ask Player to Guess and enter the correct guessed alphabet to exact position as in the word
 while not end_of_game:
-  guess = input("Guess the alphabet: ").lower()
-  for position in range(word_length):
-    letter = random_game[position]
-    if guess == letter:
-      display[position] = guess
+    guess = input("Guess a letter: ").lower()
 
-  if guess not in random_game:
-    lives -= 1
-    if lives == 0:
-      print("You Lose")
-    
-  print(f"{''.join(display)}")
+    if guess in display:
+      print(f"You've already guessed {guess}")
 
-  if "_" not in display:
-    end_of_game = True
-    print("You Win")
-  print(stages[lives])
-  print(f"you have {lives} lives left")
+    #Check guessed letter
+    for position in range(word_length):
+        letter = chosen_word[position]
+       # print(f"Current position: {position}\n Current letter: {letter}\n Guessed letter: {guess}")
+        if letter == guess:
+            display[position] = letter
+
+    #TODO-2: - If guess is not a letter in the chosen_word,
+    #Then reduce 'lives' by 1. 
+    #If lives goes down to 0 then the game should stop and it should print "You lose."
+    if guess not in chosen_word:
+        print(f"You guessed {guess}, thats not in the word.You lose a life.")
+        lives -= 1
+        if lives == 0:
+            end_of_game = True
+            print("You lose.")
+
+    #Join all the elements in the list and turn it into a String.
+    print(f"{' '.join(display)}")
+
+    #Check if user has got all letters.
+    if "_" not in display:
+        end_of_game = True
+        print("You win.")
+
+    #TODO-3: - print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
+    from hangman_art import stages
+    print(stages[lives])
